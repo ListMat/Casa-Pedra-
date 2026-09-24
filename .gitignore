@@ -35,4 +35,6 @@ yarn-error.log*
 *.tsbuildinfo
 
 # local agents & keys
-.agents/
+.agents/mcp_config.json
+.agents/*.key
+.agents/*.env
