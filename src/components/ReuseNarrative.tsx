@@ -129,11 +129,11 @@ export function ReuseNarrative() {
           <p className="eyebrow">DA SOBRA À POSSIBILIDADE</p>
           <h2 id="reuse-heading">
             <span className="motion-line">
-              <span className="motion-line-inner">O fim de um corte.</span>
+              <span className="motion-line-inner">O fim de um corte</span>
             </span>
             <span className="motion-line">
               <span className="motion-line-inner">
-                <em>O começo de uma ideia.</em>
+                <em>O começo de uma ideia</em>
               </span>
             </span>
           </h2>

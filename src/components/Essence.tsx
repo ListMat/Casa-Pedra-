@@ -7,14 +7,14 @@ export function Essence() {
         <p className="eyebrow">02 — NOSSA ESSÊNCIA</p>
         <h2 id="essence-title">
           <span className="motion-line">
-            <span className="motion-line-inner">Olhar de designer.</span>
+            <span className="motion-line-inner">Olhar de designer</span>
           </span>
           <span className="motion-line">
             <span className="motion-line-inner">Conhecimento de quem</span>
           </span>
           <span className="motion-line">
             <span className="motion-line-inner">
-              <em>vive a pedra.</em>
+              <em>vive a pedra</em>
             </span>
           </span>
         </h2>

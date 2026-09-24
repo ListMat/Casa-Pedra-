@@ -67,7 +67,7 @@ export function UsageGuide() {
             </span>
             <span className="motion-line">
               <span className="motion-line-inner">
-                <em>começa pelo uso.</em>
+                <em>começa pelo uso</em>
               </span>
             </span>
           </h2>

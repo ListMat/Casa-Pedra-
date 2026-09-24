@@ -96,11 +96,11 @@ export function Transformation() {
           <p className="eyebrow">A ARQUITETURA GANHA OUTRA LEITURA</p>
           <h2 id="wall-heading">
             <span className="motion-line">
-              <span className="motion-line-inner">O mesmo ambiente.</span>
+              <span className="motion-line-inner">O mesmo ambiente</span>
             </span>
             <span className="motion-line">
               <span className="motion-line-inner">
-                <em>Uma nova presença.</em>
+                <em>Uma nova presença</em>
               </span>
             </span>
           </h2>

@@ -14,11 +14,11 @@ export function Collection() {
           <p className="eyebrow">01 — MÓVEIS & ESPAÇOS</p>
           <h2 id="collection-title">
             <span className="motion-line">
-              <span className="motion-line-inner">Mais que compor.</span>
+              <span className="motion-line-inner">Mais que compor</span>
             </span>
             <span className="motion-line">
               <span className="motion-line-inner">
-                <em>Marcar presença.</em>
+                <em>Marcar presença</em>
               </span>
             </span>
           </h2>
@@ -31,6 +31,10 @@ export function Collection() {
       <div className="project-grid">
         <article className="project">
           <figure>
+            <div className="project-badges">
+              <span className="project-badge">Chapa Única · Sob Medida</span>
+              <span className="project-badge project-badge-sub">Produção em MG</span>
+            </div>
             <Image
               src="/assets/console.webp"
               width={1448}
@@ -60,6 +64,10 @@ export function Collection() {
 
         <article className="project project-offset">
           <figure>
+            <div className="project-badges">
+              <span className="project-badge">Selagem Hidro-óleo Repelente</span>
+              <span className="project-badge project-badge-sub">Vistoria Técnica em SP</span>
+            </div>
             <Image
               src="/assets/wall.webp"
               width={1448}

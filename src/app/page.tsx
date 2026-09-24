@@ -1,4 +1,5 @@
 import React from 'react';
+import { Preloader } from '@/components/Preloader';
 import { Header } from '@/components/Header';
 import { Hero } from '@/components/Hero';
 import { Credentials } from '@/components/Credentials';
@@ -20,6 +21,7 @@ import { siteConfig } from '@/config/site';
 export default function HomePage() {
   return (
     <ProjectPreferencesProvider>
+      <Preloader />
       <ScrollRevealObserver />
       <Header />
       <main id="principal">

@@ -8,11 +8,11 @@ export function Process() {
           <p className="eyebrow">03 — DO DESEJO AO PROJETO</p>
           <h2 id="process-title">
             <span className="motion-line">
-              <span className="motion-line-inner">Começa com uma ideia.</span>
+              <span className="motion-line-inner">Começa com uma ideia</span>
             </span>
             <span className="motion-line">
               <span className="motion-line-inner">
-                <em>A sua.</em>
+                <em>A sua</em>
               </span>
             </span>
           </h2>

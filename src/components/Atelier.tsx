@@ -130,11 +130,11 @@ export function Atelier() {
           <p className="eyebrow">ATELIÊ CASA PEDRA</p>
           <h2 id="atelier-heading">
             <span className="motion-line">
-              <span className="motion-line-inner">Uma peça.</span>
+              <span className="motion-line-inner">Uma peça</span>
             </span>
             <span className="motion-line">
               <span className="motion-line-inner">
-                <em>A sua identidade.</em>
+                <em>A sua identidade</em>
               </span>
             </span>
           </h2>

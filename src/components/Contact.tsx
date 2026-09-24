@@ -80,7 +80,7 @@ export function Contact() {
           </span>
           <span className="motion-line">
             <span className="motion-line-inner">
-              <em>boa conversa.</em>
+              <em>boa conversa</em>
             </span>
           </span>
         </h2>
