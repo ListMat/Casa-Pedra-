@@ -176,25 +176,45 @@ export function Atelier() {
         </figure>
 
         <div className="atelier-controls">
-          <p className="eyebrow">01 / ESCOLHA A PEÇA</p>
-          <label className="sr-only" htmlFor="atelier-piece">
-            Tipo de móvel
-          </label>
-          <select
-            id="atelier-piece"
-            value={pieceType}
-            onChange={(e) => handleTypeChange(e.target.value as CompositionType)}
-          >
-            <option value="jantar">Mesa de jantar</option>
-            <option value="centro">Mesa de centro</option>
-            <option value="aparador">Aparador</option>
-          </select>
+          <p className="eyebrow">01 / ESCOLHA O TIPO DE PEÇA</p>
+          <div className="atelier-segmented-control" role="tablist" aria-label="Tipo de móvel">
+            <button
+              type="button"
+              role="tab"
+              aria-selected={pieceType === 'jantar'}
+              className={`segmented-tab ${pieceType === 'jantar' ? 'active' : ''}`}
+              onClick={() => handleTypeChange('jantar')}
+            >
+              Mesa de jantar
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={pieceType === 'centro'}
+              className={`segmented-tab ${pieceType === 'centro' ? 'active' : ''}`}
+              onClick={() => handleTypeChange('centro')}
+            >
+              Mesa de centro
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={pieceType === 'aparador'}
+              className={`segmented-tab ${pieceType === 'aparador' ? 'active' : ''}`}
+              onClick={() => handleTypeChange('aparador')}
+            >
+              Aparador
+            </button>
+          </div>
 
           <fieldset>
-            <legend>02 / FORMA E EXPRESSÃO</legend>
+            <legend>02 / FORMA E EXPRESSÃO MINERAL</legend>
             <div id="atelier-options">
               {filteredCompositions.map((item) => (
-                <label key={item.id} className="composition-choice">
+                <label
+                  key={item.id}
+                  className={`composition-choice ${selectedId === item.id ? 'active' : ''}`}
+                >
                   <input
                     type="radio"
                     name="composition"
@@ -202,7 +222,8 @@ export function Atelier() {
                     checked={selectedId === item.id}
                     onChange={() => handleSelectComposition(item.id)}
                   />
-                  <span>{item.label}</span>
+                  <span className="choice-indicator" aria-hidden="true" />
+                  <span className="choice-label">{item.label}</span>
                 </label>
               ))}
             </div>

@@ -12,7 +12,11 @@ export function Contact() {
     setInterest,
     contextSummary,
     hasContext,
-    clearContext
+    clearContext,
+    clearComposition,
+    clearWall,
+    clearReuse,
+    clearGuide
   } = useProjectPreferences();
 
   const [location, setLocation] = useState<string>('');
@@ -105,13 +109,65 @@ export function Contact() {
 
         {hasContext && (
           <div id="project-context" className="project-context">
-            <strong>Suas referências para a conversa</strong>
-            <p id="project-context-text" aria-live="polite">
+            <div className="project-context-header">
+              <strong>Suas referências para a conversa</strong>
+              <button id="clear-context" type="button" onClick={handleClearContext}>
+                Limpar tudo
+              </button>
+            </div>
+            <div className="project-chips-list">
+              {context.composition && (
+                <span className="context-chip">
+                  <span>Ateliê: {context.composition}</span>
+                  <button
+                    type="button"
+                    aria-label="Remover composição do Ateliê"
+                    onClick={clearComposition}
+                  >
+                    ×
+                  </button>
+                </span>
+              )}
+              {context.wall && (
+                <span className="context-chip">
+                  <span>Revestimento de Parede</span>
+                  <button
+                    type="button"
+                    aria-label="Remover referência de revestimento"
+                    onClick={clearWall}
+                  >
+                    ×
+                  </button>
+                </span>
+              )}
+              {context.reuse && (
+                <span className="context-chip">
+                  <span>Reaproveitamento</span>
+                  <button
+                    type="button"
+                    aria-label="Remover interesse em reaproveitamento"
+                    onClick={clearReuse}
+                  >
+                    ×
+                  </button>
+                </span>
+              )}
+              {context.guide && (
+                <span className="context-chip">
+                  <span>Guia de Uso</span>
+                  <button
+                    type="button"
+                    aria-label="Remover preferências do guia"
+                    onClick={clearGuide}
+                  >
+                    ×
+                  </button>
+                </span>
+              )}
+            </div>
+            <p id="project-context-text" className="sr-only" aria-live="polite">
               {contextSummary}
             </p>
-            <button id="clear-context" type="button" onClick={handleClearContext}>
-              Limpar referências
-            </button>
           </div>
         )}
 

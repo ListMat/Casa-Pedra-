@@ -7,8 +7,11 @@ import { getComposition } from '@/data/compositions';
 interface ProjectContextValue {
   context: ProjectContextState;
   setComposition: (id: string) => void;
+  clearComposition: () => void;
   setWall: () => void;
+  clearWall: () => void;
   setReuse: () => void;
+  clearReuse: () => void;
   setGuide: (answers: GuideAnswers) => void;
   clearGuide: () => void;
   clearContext: () => void;
@@ -79,6 +82,30 @@ export function ProjectPreferencesProvider({ children }: { children: React.React
     [calculateInterest]
   );
 
+  const clearComposition = useCallback(() => {
+    setContext((prev) => {
+      const next = { ...prev };
+      delete next.composition;
+      return next;
+    });
+  }, []);
+
+  const clearWall = useCallback(() => {
+    setContext((prev) => {
+      const next = { ...prev };
+      delete next.wall;
+      return next;
+    });
+  }, []);
+
+  const clearReuse = useCallback(() => {
+    setContext((prev) => {
+      const next = { ...prev };
+      delete next.reuse;
+      return next;
+    });
+  }, []);
+
   const clearGuide = useCallback(() => {
     setContext((prev) => {
       const next = { ...prev };
@@ -122,8 +149,11 @@ export function ProjectPreferencesProvider({ children }: { children: React.React
     () => ({
       context,
       setComposition,
+      clearComposition,
       setWall,
+      clearWall,
       setReuse,
+      clearReuse,
       setGuide,
       clearGuide,
       clearContext,
@@ -135,8 +165,11 @@ export function ProjectPreferencesProvider({ children }: { children: React.React
     [
       context,
       setComposition,
+      clearComposition,
       setWall,
+      clearWall,
       setReuse,
+      clearReuse,
       setGuide,
       clearGuide,
       clearContext,

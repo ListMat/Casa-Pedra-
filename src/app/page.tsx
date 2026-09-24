@@ -14,14 +14,12 @@ import { Contact } from '@/components/Contact';
 import { Footer } from '@/components/Footer';
 import { MobileContactBar } from '@/components/MobileContactBar';
 import { ScrollRevealObserver } from '@/components/ScrollRevealObserver';
-import { EditorialPreloader } from '@/components/EditorialPreloader';
 import { ProjectPreferencesProvider } from '@/context/ProjectContext';
 import { siteConfig } from '@/config/site';
 
 export default function HomePage() {
   return (
     <ProjectPreferencesProvider>
-      <EditorialPreloader />
       <ScrollRevealObserver />
       <Header />
       <main id="principal">
