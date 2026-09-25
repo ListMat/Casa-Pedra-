@@ -17,7 +17,7 @@ export default function RelatorioPage() {
     <div className="relatorio-body">
       <div className="toolbar">
         <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-          <Link href="/">← Abrir landing page</Link>
+          <a href="https://casa-pedra.vercel.app/">← Abrir landing page</a>
           <a
             href="https://www.figma.com/design/2jTNO9EnZb3HcxhatfbU1u/Casa-Pedra?node-id=2001-253&t=v6lnkE993hYSZYnp-1"
             target="_blank"
@@ -309,7 +309,9 @@ export default function RelatorioPage() {
 
           <div className="foot">
             <span>Imagens conceituais · contato fictício</span>
-            <Link href="/">Abrir landing page ↗</Link>
+            <a href="https://casa-pedra.vercel.app/" target="_blank" rel="noopener noreferrer">
+              Abrir landing page ↗
+            </a>
             <span>Visual & execução · 2 / 2</span>
           </div>
         </article>
