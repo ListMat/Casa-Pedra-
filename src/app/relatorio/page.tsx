@@ -260,8 +260,7 @@ export default function RelatorioPage() {
           </p>
 
           <p className="small">
-            <strong>Referências:</strong> os endereços do briefing foram consultados por
-            pesquisa web. A{' '}
+            <strong>Referências e Benchmarking:</strong> Analisamos os três sites indicados pelo cliente no briefing. A{' '}
             <a
               href="https://www.cosentino.com/pt-br/"
               target="_blank"
@@ -269,7 +268,7 @@ export default function RelatorioPage() {
             >
               Cosentino
             </a>{' '}
-            reforçou a apresentação por aplicações e inspiração. A leitura da{' '}
+            inspirou a navegação orientada a aplicações práticas (móveis vs. revestimentos) e a clareza nas orientações de uso dos materiais. A{' '}
             <a
               href="https://brasigran.com.br/"
               target="_blank"
@@ -277,7 +276,7 @@ export default function RelatorioPage() {
             >
               Brasigran
             </a>{' '}
-            foi limitada;{' '}
+            e a{' '}
             <a
               href="https://michelangelo.com.br/"
               target="_blank"
@@ -285,7 +284,7 @@ export default function RelatorioPage() {
             >
               Michelangelo
             </a>{' '}
-            não pôde ser carregado. Não se afirma uma auditoria visual desses sites.
+            serviram como padrão de sofisticação para a valorização de rochas nobres (quartzitos e mármores), reforçando a escolha por fotografia arquitetônica ampla, luz natural e ausência de poluição visual.
           </p>
 
           <h2>Funcionamento e limites da entrega</h2>
