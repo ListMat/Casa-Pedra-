@@ -19,7 +19,7 @@ export function Essence() {
           </span>
         </h2>
         <p>
-          Uma empresa familiar com matriz e produção em Minas Gerais. Há 27 anos,
+          Uma empresa familiar com matriz e produção em São Paulo. Há 27 anos,
           aproximamos a riqueza das rochas de quem valoriza arquitetura e design.
         </p>
       </div>

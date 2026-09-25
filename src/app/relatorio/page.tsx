@@ -16,7 +16,16 @@ export default function RelatorioPage() {
   return (
     <div className="relatorio-body">
       <div className="toolbar">
-        <Link href="/">← Abrir landing page</Link>
+        <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+          <Link href="/">← Abrir landing page</Link>
+          <a
+            href="https://www.figma.com/design/2jTNO9EnZb3HcxhatfbU1u/Casa-Pedra?node-id=2001-253&t=v6lnkE993hYSZYnp-1"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Ver Projeto no Figma ↗
+          </a>
+        </div>
         <PrintButton />
       </div>
 
@@ -223,7 +232,16 @@ export default function RelatorioPage() {
 
           <h2>5. Design no Figma e Desenvolvimento Next.js</h2>
           <p>
-            <strong>Stack e Arquitetura:</strong> A página foi desenhada no <strong>Figma</strong> e desenvolvida utilizando <strong>Next.js 14</strong> (App
+            <strong>Stack e Arquitetura:</strong> A página foi desenhada no{' '}
+            <a
+              href="https://www.figma.com/design/2jTNO9EnZb3HcxhatfbU1u/Casa-Pedra?node-id=2001-253&t=v6lnkE993hYSZYnp-1"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ fontWeight: 600 }}
+            >
+              Figma (ver projeto)
+            </a>{' '}
+            e desenvolvida utilizando <strong>Next.js 14</strong> (App
             Router), <strong>React 18</strong> e <strong>TypeScript</strong> estrito, com Server Components por padrão e
             Client Components restritos a áreas interativas. <strong>Design no Figma:</strong>{' '}
             concepção visual, hierarquia tipográfica, grid responsivo, sistema de cores e prototipagem da interface. <strong>IA de imagem:</strong> as onze imagens conceituais descritas
