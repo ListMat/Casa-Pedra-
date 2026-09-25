@@ -1433,17 +1433,20 @@ h2 {
   line-height: 1.45;
 }
 
-.guide-choice:has(input:checked) {
+.guide-choice:has(input:checked),
+.guide-choice.selected {
   border-color: var(--teal);
   background: #e2ede5;
   box-shadow: inset 0 0 0 1.5px var(--teal), 0 6px 20px rgba(2, 87, 95, 0.12);
 }
 
-.guide-choice:has(input:checked) .guide-choice-body {
+.guide-choice:has(input:checked) .guide-choice-body,
+.guide-choice.selected .guide-choice-body {
   background: #e2ede5;
 }
 
-.guide-choice:has(input:checked) .guide-choice-title {
+.guide-choice:has(input:checked) .guide-choice-title,
+.guide-choice.selected .guide-choice-title {
   color: var(--teal);
 }
 

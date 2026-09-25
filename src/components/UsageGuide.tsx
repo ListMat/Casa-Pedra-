@@ -15,18 +15,25 @@ export function UsageGuide() {
   const [care, setCare] = useState<CareOption | ''>('');
   const [showResult, setShowResult] = useState<boolean>(false);
   const [adviceList, setAdviceList] = useState<string[]>([]);
+  const [validationNotice, setValidationNotice] = useState<string | null>(null);
 
   const resultRef = useRef<HTMLDivElement | null>(null);
 
-  const handleFieldChange = (
+  const handleToggleChoice = (
     type: 'environment' | 'use' | 'care',
     value: string
   ) => {
-    if (type === 'environment') setEnvironment(value as EnvironmentOption);
-    if (type === 'use') setUse(value as UseOption);
-    if (type === 'care') setCare(value as CareOption);
+    setValidationNotice(null);
 
-    // Invalidate results when answers change
+    if (type === 'environment') {
+      setEnvironment((prev) => (prev === value ? '' : (value as EnvironmentOption)));
+    } else if (type === 'use') {
+      setUse((prev) => (prev === value ? '' : (value as UseOption)));
+    } else if (type === 'care') {
+      setCare((prev) => (prev === value ? '' : (value as CareOption)));
+    }
+
+    // Invalidate previous results when answers change
     if (showResult) {
       setShowResult(false);
       clearGuide();
@@ -35,7 +42,17 @@ export function UsageGuide() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!environment || !use || !care) return;
+
+    if (!environment || !use || !care) {
+      const missing: string[] = [];
+      if (!environment) missing.push('Ambiente (Etapa 01)');
+      if (!use) missing.push('Uso Principal (Etapa 02)');
+      if (!care) missing.push('Rotina de Cuidados (Etapa 03)');
+      setValidationNotice(`Por favor, selecione uma opção em: ${missing.join(', ')}.`);
+      return;
+    }
+
+    setValidationNotice(null);
 
     const answers = {
       environment: environment as EnvironmentOption,
@@ -74,17 +91,29 @@ export function UsageGuide() {
         </div>
         <p>
           Três respostas ajudam a preparar sua conversa com a equipe. Conte onde e como
-          você imagina usar a peça.
+          você imagina usar a peça. Clique para selecionar ou desmarcar.
         </p>
       </div>
 
-      <form id="guide-form" onSubmit={handleSubmit}>
+      <form id="guide-form" onSubmit={handleSubmit} noValidate>
         <div className="guide-fields">
           {/* 01: Ambiente */}
           <fieldset className="guide-step">
             <legend>01 / EM QUAL AMBIENTE?</legend>
             <div className="guide-step-grid guide-step-grid-2">
-              <label className="guide-choice">
+              <div
+                className={`guide-choice ${environment === 'interno' ? 'selected' : ''}`}
+                onClick={() => handleToggleChoice('environment', 'interno')}
+                role="checkbox"
+                aria-checked={environment === 'interno'}
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === ' ' || e.key === 'Enter') {
+                    e.preventDefault();
+                    handleToggleChoice('environment', 'interno');
+                  }
+                }}
+              >
                 <div className="guide-choice-image-wrap">
                   <Image
                     src="/assets/console.webp"
@@ -95,12 +124,13 @@ export function UsageGuide() {
                   />
                   <div className="guide-choice-badge">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="environment"
                       value="interno"
-                      required
                       checked={environment === 'interno'}
-                      onChange={(e) => handleFieldChange('environment', e.target.value)}
+                      readOnly
+                      tabIndex={-1}
+                      aria-label="Ambiente Interior"
                     />
                   </div>
                 </div>
@@ -108,9 +138,21 @@ export function UsageGuide() {
                   <span className="guide-choice-title">Interior</span>
                   <span className="guide-choice-desc">Salas, halls e áreas protegidas</span>
                 </div>
-              </label>
+              </div>
 
-              <label className="guide-choice">
+              <div
+                className={`guide-choice ${environment === 'externo' ? 'selected' : ''}`}
+                onClick={() => handleToggleChoice('environment', 'externo')}
+                role="checkbox"
+                aria-checked={environment === 'externo'}
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === ' ' || e.key === 'Enter') {
+                    e.preventDefault();
+                    handleToggleChoice('environment', 'externo');
+                  }
+                }}
+              >
                 <div className="guide-choice-image-wrap">
                   <Image
                     src="/assets/dining-rect-light.webp"
@@ -121,11 +163,13 @@ export function UsageGuide() {
                   />
                   <div className="guide-choice-badge">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="environment"
                       value="externo"
                       checked={environment === 'externo'}
-                      onChange={(e) => handleFieldChange('environment', e.target.value)}
+                      readOnly
+                      tabIndex={-1}
+                      aria-label="Ambiente Exterior"
                     />
                   </div>
                 </div>
@@ -133,7 +177,7 @@ export function UsageGuide() {
                   <span className="guide-choice-title">Exterior</span>
                   <span className="guide-choice-desc">Varandas, gourmet e ar livre</span>
                 </div>
-              </label>
+              </div>
             </div>
           </fieldset>
 
@@ -141,7 +185,19 @@ export function UsageGuide() {
           <fieldset className="guide-step">
             <legend>02 / QUAL É O USO PRINCIPAL?</legend>
             <div className="guide-step-grid guide-step-grid-3">
-              <label className="guide-choice">
+              <div
+                className={`guide-choice ${use === 'refeicoes' ? 'selected' : ''}`}
+                onClick={() => handleToggleChoice('use', 'refeicoes')}
+                role="checkbox"
+                aria-checked={use === 'refeicoes'}
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === ' ' || e.key === 'Enter') {
+                    e.preventDefault();
+                    handleToggleChoice('use', 'refeicoes');
+                  }
+                }}
+              >
                 <div className="guide-choice-image-wrap">
                   <Image
                     src="/assets/hero.webp"
@@ -152,12 +208,13 @@ export function UsageGuide() {
                   />
                   <div className="guide-choice-badge">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="use"
                       value="refeicoes"
-                      required
                       checked={use === 'refeicoes'}
-                      onChange={(e) => handleFieldChange('use', e.target.value)}
+                      readOnly
+                      tabIndex={-1}
+                      aria-label="Uso para Refeições"
                     />
                   </div>
                 </div>
@@ -165,9 +222,21 @@ export function UsageGuide() {
                   <span className="guide-choice-title">Refeições</span>
                   <span className="guide-choice-desc">Mesas de jantar e encontros</span>
                 </div>
-              </label>
+              </div>
 
-              <label className="guide-choice">
+              <div
+                className={`guide-choice ${use === 'decoracao' ? 'selected' : ''}`}
+                onClick={() => handleToggleChoice('use', 'decoracao')}
+                role="checkbox"
+                aria-checked={use === 'decoracao'}
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === ' ' || e.key === 'Enter') {
+                    e.preventDefault();
+                    handleToggleChoice('use', 'decoracao');
+                  }
+                }}
+              >
                 <div className="guide-choice-image-wrap">
                   <Image
                     src="/assets/coffee-organic-light.webp"
@@ -178,11 +247,13 @@ export function UsageGuide() {
                   />
                   <div className="guide-choice-badge">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="use"
                       value="decoracao"
                       checked={use === 'decoracao'}
-                      onChange={(e) => handleFieldChange('use', e.target.value)}
+                      readOnly
+                      tabIndex={-1}
+                      aria-label="Uso para Apoio e decoração"
                     />
                   </div>
                 </div>
@@ -190,9 +261,21 @@ export function UsageGuide() {
                   <span className="guide-choice-title">Apoio e decoração</span>
                   <span className="guide-choice-desc">Mesas de centro e aparadores</span>
                 </div>
-              </label>
+              </div>
 
-              <label className="guide-choice">
+              <div
+                className={`guide-choice ${use === 'parede' ? 'selected' : ''}`}
+                onClick={() => handleToggleChoice('use', 'parede')}
+                role="checkbox"
+                aria-checked={use === 'parede'}
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === ' ' || e.key === 'Enter') {
+                    e.preventDefault();
+                    handleToggleChoice('use', 'parede');
+                  }
+                }}
+              >
                 <div className="guide-choice-image-wrap">
                   <Image
                     src="/assets/wall.webp"
@@ -203,11 +286,13 @@ export function UsageGuide() {
                   />
                   <div className="guide-choice-badge">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="use"
                       value="parede"
                       checked={use === 'parede'}
-                      onChange={(e) => handleFieldChange('use', e.target.value)}
+                      readOnly
+                      tabIndex={-1}
+                      aria-label="Uso para Revestimento de parede"
                     />
                   </div>
                 </div>
@@ -215,7 +300,7 @@ export function UsageGuide() {
                   <span className="guide-choice-title">Revestimento de parede</span>
                   <span className="guide-choice-desc">Painéis e destaque arquitetônico</span>
                 </div>
-              </label>
+              </div>
             </div>
           </fieldset>
 
@@ -223,7 +308,19 @@ export function UsageGuide() {
           <fieldset className="guide-step">
             <legend>03 / SUA ROTINA DE CUIDADOS</legend>
             <div className="guide-step-grid guide-step-grid-2">
-              <label className="guide-choice">
+              <div
+                className={`guide-choice ${care === 'praticidade' ? 'selected' : ''}`}
+                onClick={() => handleToggleChoice('care', 'praticidade')}
+                role="checkbox"
+                aria-checked={care === 'praticidade'}
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === ' ' || e.key === 'Enter') {
+                    e.preventDefault();
+                    handleToggleChoice('care', 'praticidade');
+                  }
+                }}
+              >
                 <div className="guide-choice-image-wrap">
                   <Image
                     src="/assets/console.webp"
@@ -234,12 +331,13 @@ export function UsageGuide() {
                   />
                   <div className="guide-choice-badge">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="care"
                       value="praticidade"
-                      required
                       checked={care === 'praticidade'}
-                      onChange={(e) => handleFieldChange('care', e.target.value)}
+                      readOnly
+                      tabIndex={-1}
+                      aria-label="Priorizo praticidade"
                     />
                   </div>
                 </div>
@@ -247,9 +345,21 @@ export function UsageGuide() {
                   <span className="guide-choice-title">Priorizo praticidade</span>
                   <span className="guide-choice-desc">Manutenção simples no dia a dia</span>
                 </div>
-              </label>
+              </div>
 
-              <label className="guide-choice">
+              <div
+                className={`guide-choice ${care === 'cuidados' ? 'selected' : ''}`}
+                onClick={() => handleToggleChoice('care', 'cuidados')}
+                role="checkbox"
+                aria-checked={care === 'cuidados'}
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === ' ' || e.key === 'Enter') {
+                    e.preventDefault();
+                    handleToggleChoice('care', 'cuidados');
+                  }
+                }}
+              >
                 <div className="guide-choice-image-wrap">
                   <Image
                     src="/assets/console-rect-veined.webp"
@@ -260,11 +370,13 @@ export function UsageGuide() {
                   />
                   <div className="guide-choice-badge">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="care"
                       value="cuidados"
                       checked={care === 'cuidados'}
-                      onChange={(e) => handleFieldChange('care', e.target.value)}
+                      readOnly
+                      tabIndex={-1}
+                      aria-label="Aceito cuidados específicos"
                     />
                   </div>
                 </div>
@@ -272,12 +384,18 @@ export function UsageGuide() {
                   <span className="guide-choice-title">Aceito cuidados específicos</span>
                   <span className="guide-choice-desc">Rochas nobres e veios exuberantes</span>
                 </div>
-              </label>
+              </div>
             </div>
           </fieldset>
         </div>
 
-        <button type="submit" className="button">
+        {validationNotice && (
+          <p className="micro-feedback" role="alert" style={{ color: 'var(--coral)', marginTop: '12px' }}>
+            {validationNotice}
+          </p>
+        )}
+
+        <button type="submit" className="button" style={{ marginTop: '20px' }}>
           Ver orientações para minha conversa <span aria-hidden="true">↗</span>
         </button>
       </form>
